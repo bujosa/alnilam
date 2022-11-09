@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 	"time"
 )
@@ -9,6 +10,10 @@ import (
 // I use this packages because i need to add more go routines
 // So I need to wait for this.
 var wg sync.WaitGroup
+
+func init() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
+}
 
 func main() {
 	wg.Add(2)
