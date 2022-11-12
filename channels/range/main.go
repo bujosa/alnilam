@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
@@ -12,13 +11,13 @@ func main() {
 		for i := 0; i < 10; i++ {
 			c <- i // Introduce value into the channel
 		}
+
+		close(c)
 	}()
 
-	go func() {
-		for {
-			fmt.Println(<-c) // Get Channel value
-		}
-	}()
+	// Iterate the channel until this close
+	for n := range c {
+		fmt.Println(n)
+	}
 
-	time.Sleep(time.Second)
 }
