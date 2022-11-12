@@ -18,13 +18,13 @@ func init() {
 
 func main() {
 	wg.Add(2)
-	go incrementor("First:") // Call 1
-	go incrementor("Second:") // Call 2
+	go incrementor() // Call 1
+	go incrementor() // Call 2
 	wg.Wait()
 	fmt.Println("Result: ", counter)
 }
 
-func incrementor(s string) {
+func incrementor() {
 	for i := 0; i < 20; i++ {
 		time.Sleep(time.Duration(rand.Intn(20))*time.Millisecond)
 		mutex.Lock() // I use this because lock block the access 
