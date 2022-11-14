@@ -4,13 +4,13 @@ import "fmt"
 
 func main() {
 	c := incrementor()
-	result := puller(c)
-
-	for n := range result {
+	for n := range puller(c) {
 		fmt.Println(n)
 	}
 }
 
+// This <-chan is maybe optional because isnt affect the functionality
+// but for the programmer is more clear to undestand
 func incrementor() <-chan int{
 	out := make(chan int)
 	go func(){
